@@ -81,7 +81,7 @@ echo "Installing Kibana"
 sudo wget https://download.elastic.co/kibana/kibana/kibana-4.5.0-linux-x86.tar.gz
 sudo tar -xzf kibana-4.5.0-linux-x86.tar.gz
 sudo mv kibana-4.5.0-linux-x86/ /opt/kibana/
-sudo apt-get -y remove nodejs-legacy nodejs nodered		#Remove nodejs on Pi3
+sudo apt-get -y autoremove nodejs-legacy nodejs nodered		#Remove nodejs on Pi3
 sudo wget http://node-arm.herokuapp.com/node_latest_armhf.deb
 sudo dpkg -i node_latest_armhf.deb
 sudo mv /opt/kibana/node/bin/node /opt/kibana/node/bin/node.orig
@@ -102,10 +102,10 @@ sudo python /opt/SweetSecurity/pullTorIP.py
 sudo python /opt/SweetSecurity/pullMaliciousIP.py
 
 #Configure Logstash Conf File
-sudo sed -i -- "s/SMTP_HOST/"$smtpHost"/g" /opt/logstash/logstash.conf
-sudo sed -i -- "s/SMTP_PORT/"$smtpPort"/g" /opt/logstash/logstash.conf
-sudo sed -i -- "s/EMAIL_USER/"$emailAddr"/g" /opt/logstash/logstash.conf
-sudo sed -i -- "s/EMAIL_PASS/"$emailPwd"/g" /opt/logstash/logstash.conf
+sudo sed -i -- "s/SMTP_HOST/"$smtpHost"/g" /etc/logstash/conf.d/logstash.conf
+sudo sed -i -- "s/SMTP_PORT/"$smtpPort"/g" /etc/logstash/conf.d/logstash.conf
+sudo sed -i -- "s/EMAIL_USER/"$emailAddr"/g" /etc/logstash/conf.d/logstash.conf
+sudo sed -i -- "s/EMAIL_PASS/"$emailPwd"/g" /etc/logstash/conf.d/logstash.conf
 
 
 cd /home/pi
